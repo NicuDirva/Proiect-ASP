@@ -1,0 +1,53 @@
+﻿@model  Proiect.Models.Profile
+<div class="card-title alert-success py-3 px-3 rounded-2">
+    <h2 class="text-center mt-5" style="font-weight:bold">Edit Profile</h2>
+    <br />
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            @using (Html.BeginForm(actionName: "Edit", controllerName: "Profile",
+            method: FormMethod.Post,
+            new { enctype = "multipart/form-data", id = Model.Id }))  //we have id here because it should match with model attribute, id
+            {
+
+                @Html.Label("ProfileUsername", "Username")
+                <br />
+                @Html.EditorFor(m => m.ProfileUsername, new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.ProfileUsername, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                @Html.Label("Description", "Description")
+                <br />
+                @Html.Editor("Description", new { htmlAttributes = new { @class = "form-control" } })
+
+                @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                <label>Choose Privacy</label>
+                @Html.DropDownListFor(m => m.Privacy, new SelectList(Model.Priv, "Value", "Text"),
+                "Select Privacy", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Privacy, null, new { @class = "text-danger" })
+
+                <br />
+                <br />
+
+                @Html.TextBoxFor(m => m.ProfileImage, new { type = "file"})
+               
+                @Html.ValidationMessageFor(m => m.ProfileImage, "", new { @class = "error" })
+
+                <br/>
+                <br/>
+                <br />
+
+                <button class="btn btn-sm btn-success" type="submit">Change profile</button>
+
+            }
+        </div>
+    </div>
+ 
+</div>
+

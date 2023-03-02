@@ -1,0 +1,29 @@
+﻿@model Proiect.Models.Post
+
+<div class="card-title alert-success py-3 px-3 rounded-2">
+    <h2 class="text-center mt-5" style="font-weight:bold">Add Post</h2>
+    <br />
+    <div class="row">
+        <div class="col-6 offset-3">
+
+            @using (Html.BeginForm(actionName: "NewPost", controllerName: "Post",
+            method: FormMethod.Post))
+            {
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                @Html.Label("Message", "Your Post")
+                <br />
+                @Html.TextBox("Message", null, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+                <br />
+
+                <br />
+
+                <button class="btn btn-success" type="submit">Add post</button>
+            }
+
+        </div>
+    </div>
+</div>
